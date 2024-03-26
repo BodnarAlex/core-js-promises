@@ -59,11 +59,7 @@ function getPromiseResult(source) {
  * [Promise.reject(1), Promise.reject(2), Promise.reject(3)]    => Promise rejected
  */
 function getFirstResolvedPromiseResult(promises) {
-  return new Promise((resolve) => {
-    Promise.race(promises)
-      .then(resolve)
-      .catch(() => new Error('Promise rejected'));
-  });
+  return Promise.any(promises);
 }
 
 /**
